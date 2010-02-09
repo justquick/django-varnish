@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
-from managers import VarnishManager
+from manager import VarnishManager
 
 def get_stats():
     stats = [x[0] for x in manager.run('stats')]
