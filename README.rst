@@ -28,7 +28,7 @@ Example ``('server1:6082','server2:6082')``
 Management
 -------------
 
-You can view the status of your Varnish cache servers by going to ``/admin/varnish/`` and being a superuser.
+You can view the status of your Varnish cache servers by going to ``/admin/varnish/`` and being a superuser. `Here is what it looks like in production <http://wiki.github.com/justquick/django-varnish/>`_.
 
 Run the management command ``varnishmgt`` to blindly execute arguments to all Varnish backends. Example::
 
