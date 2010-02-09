@@ -1,6 +1,7 @@
 {% extends 'admin/change_list.html' %}
 {% load humanize %} 
 {% block content %}
+{% if request.user.is_superuser %}
 <table><tr>
     {% for server,report in stats %}
         <td><h1>{{ server|join:":" }}</h1>
@@ -76,4 +77,7 @@
         </blockquote></td>
     {% endfor %}
 </tr></table>
+{% else %}
+Hey now, ur not supposed to b here
+{% endif %}
 {% endblock %}
