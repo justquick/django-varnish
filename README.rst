@@ -15,14 +15,14 @@ Setup
 -------
 1. Install the `varnish python bindings <http://github.com/justquick/python-varnish>`_
 2. Put ``varnishapp`` in your ``INSTALLED_APPS`` then set a few more settings.
-3. Add ``(^'admin/varnish/', include('varnishapp.urls')),`` to your urlconf
+3. Add ``(r'^admin/varnish/', include('varnishapp.urls')),`` to your urlconf
 
 Configure
 ------------
 ``VARNISH_WATCHED_MODELS`` is a list of installed models whose absolute_urls you want to purge from your
 Varnish cache upon saving. Example: ``('auth.user','profiles.profile')``
 
-``VARNISH_MANAGMENT_ADDRS`` is a list of Varnish cache addresses (containing their management ports).
+``VARNISH_MANAGEMENT_ADDRS`` is a list of Varnish cache addresses (containing their management ports).
 Example ``('server1:6082','server2:6082')``
 
 Management

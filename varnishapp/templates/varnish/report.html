@@ -5,78 +5,83 @@
 <form><input type="text" name="command"/><input type="submit" value="Run command"/></form>
 
 <table><tr>
-    {% for server,report in stats %}
-        <td><h1>{{ server|join:":" }}</h1>
-        <blockquote>
-        <h2>Client connections</h2>
-        <ul>
-            <li>Connections accepted {{ report.client_connections_accepted|intcomma }}</li>
-            <li>Requests received {{ report.client_requests_received|intcomma }}</li>
-        </ul>
-        
-        <h2>Cache utilization</h2>
-        <ul>
-            <li>Hits {{ report.cache_hits|intcomma }}</li>
-            <li>Hits for pass {{ report.cache_hits_for_pass|intcomma }}</li>
-            <li>Misses {{ report.cache_misses|intcomma }}</li>
-        </ul>
-        
-        <h2>Backend connection usage</h2>
-        <ul>
-            <li>Successful {{ report.backend_connections_success|intcomma }}</li>
-            <li>Recycled {{ report.backend_connections_recycles|intcomma }}</li>
-            <li>Reused {{ report.backend_connections_reuses|intcomma }}</li>
-            <li>Unused {{ report.backend_connections_unused|intcomma }}</li>
-            <li>Not attempted {{ report.backend_connections_not_attempted|intcomma }}</li>
-            <li>Failure {{ report.backend_connections_failures|intcomma }}</li>
-        </ul>
-        
-        <ul>
-            <li>N worker threads {{ report.n_worker_threads|intcomma }}</li>
-            <li>N worker threads created {{ report.n_worker_threads_created|intcomma }}</li>
-            <li>N worker threads not created {{ report.n_worker_threads_not_created|intcomma }}</li>
-            <li>N worker threads limited {{ report.n_worker_threads_limited|intcomma }}</li>
-            <li>N queued work requests {{ report.n_queued_work_requests|intcomma }}</li>
-            <li>N overflowed work requests {{ report.n_overflowed_work_requests|intcomma }}</li>
-            <li>N dropped work requests {{ report.n_dropped_work_requests|intcomma }}</li>
-        </ul>
-        
-        <ul>
-            <li>N expired objects {{ report.n_expired_objects|intcomma }}</li>
-            <li>N objects on deathrow {{ report.n_objects_on_deathrow|intcomma }}</li>
-            <li>HTTP header overflows {{ report.http_header_overflows|intcomma }}</li>
-            <li>Objects sent with sendfile {{ report.objects_sent_with_sendfile|intcomma }}</li>
-            <li>Objects sent with write {{ report.objects_sent_with_write|intcomma }}</li>
-        </ul>
-        
-        <h2>Shared memory</h2>
-        <ul>
-            <li>Records {{ report.shm_records|intcomma }}</li>
-            <li>Writes {{ report.shm_writes|intcomma }}</li>
-            <li>MTX contention {{ report.shm_mtx_contention|intcomma }}</li>
-            <li>Flushes do to overflow {{ report.shm_flushes_due_to_overflow|intcomma }}</li>
-            <li>Cycles through buffer {{ report.shm_cycles_through_buffer|intcomma }}</li>
-        </ul>
-        
-        <h2>Sessions</h2>
-        <ul>
-            <li>Closed {{ report.session_closed|intcomma }}</li>        
-            <li>Pipeline {{ report.session_pipeline|intcomma }}</li>        
-            <li>Read ahead {{ report.session_read_ahead|intcomma }}</li>        
-            <li>Herd {{ report.session_herd|intcomma }}</li>
-        </ul>
-        
-        <h2>Totals</h2>
-        <ul>
-            <li>Sessions {{ report.total_sessions|intcomma }}</li>        
-            <li>Requests {{ report.total_requests|intcomma }}</li>        
-            <li>Pipe {{ report.total_pipe|intcomma }}</li>        
-            <li>Pass {{ report.total_pass|intcomma }}</li>        
-            <li>Fetch {{ report.total_fetch|intcomma }}</li>        
-            <li>Header bytes {{ report.total_header_bytes|intcomma }}</li>        
-            <li>Body bytes {{ report.total_body_bytes|intcomma }}</li>        
-        </ul>        
-        </blockquote></td>
-    {% endfor %}
+    {% if stats %}
+        {% for server,report in stats %}
+            <td><h1>{{ server }}</h1>
+            <blockquote>
+            <h2>Client connections</h2>
+            <ul>
+                <li>Connections accepted {{ report.client_connections_accepted|intcomma }}</li>
+                <li>Requests received {{ report.client_requests_received|intcomma }}</li>
+            </ul>
+            
+            <h2>Cache utilization</h2>
+            <ul>
+                <li>Hits {{ report.cache_hits|intcomma }}</li>
+                <li>Hits for pass {{ report.cache_hits_for_pass|intcomma }}</li>
+                <li>Misses {{ report.cache_misses|intcomma }}</li>
+            </ul>
+            
+            <h2>Backend connection usage</h2>
+            <ul>
+                <li>Successful {{ report.backend_connections_success|intcomma }}</li>
+                <li>Recycled {{ report.backend_connections_recycles|intcomma }}</li>
+                <li>Reused {{ report.backend_connections_reuses|intcomma }}</li>
+                <li>Unused {{ report.backend_connections_unused|intcomma }}</li>
+                <li>Not attempted {{ report.backend_connections_not_attempted|intcomma }}</li>
+                <li>Failure {{ report.backend_connections_failures|intcomma }}</li>
+            </ul>
+            
+            <ul>
+                <li>N worker threads {{ report.n_worker_threads|intcomma }}</li>
+                <li>N worker threads created {{ report.n_worker_threads_created|intcomma }}</li>
+                <li>N worker threads not created {{ report.n_worker_threads_not_created|intcomma }}</li>
+                <li>N worker threads limited {{ report.n_worker_threads_limited|intcomma }}</li>
+                <li>N queued work requests {{ report.n_queued_work_requests|intcomma }}</li>
+                <li>N overflowed work requests {{ report.n_overflowed_work_requests|intcomma }}</li>
+                <li>N dropped work requests {{ report.n_dropped_work_requests|intcomma }}</li>
+            </ul>
+            
+            <ul>
+                <li>N expired objects {{ report.n_expired_objects|intcomma }}</li>
+                <li>N objects on deathrow {{ report.n_objects_on_deathrow|intcomma }}</li>
+                <li>HTTP header overflows {{ report.http_header_overflows|intcomma }}</li>
+                <li>Objects sent with sendfile {{ report.objects_sent_with_sendfile|intcomma }}</li>
+                <li>Objects sent with write {{ report.objects_sent_with_write|intcomma }}</li>
+            </ul>
+            
+            <h2>Shared memory</h2>
+            <ul>
+                <li>Records {{ report.shm_records|intcomma }}</li>
+                <li>Writes {{ report.shm_writes|intcomma }}</li>
+                <li>MTX contention {{ report.shm_mtx_contention|intcomma }}</li>
+                <li>Flushes do to overflow {{ report.shm_flushes_due_to_overflow|intcomma }}</li>
+                <li>Cycles through buffer {{ report.shm_cycles_through_buffer|intcomma }}</li>
+            </ul>
+            
+            <h2>Sessions</h2>
+            <ul>
+                <li>Closed {{ report.session_closed|intcomma }}</li>        
+                <li>Pipeline {{ report.session_pipeline|intcomma }}</li>        
+                <li>Read ahead {{ report.session_read_ahead|intcomma }}</li>        
+                <li>Herd {{ report.session_herd|intcomma }}</li>
+            </ul>
+            
+            <h2>Totals</h2>
+            <ul>
+                <li>Sessions {{ report.total_sessions|intcomma }}</li>        
+                <li>Requests {{ report.total_requests|intcomma }}</li>        
+                <li>Pipe {{ report.total_pipe|intcomma }}</li>        
+                <li>Pass {{ report.total_pass|intcomma }}</li>        
+                <li>Fetch {{ report.total_fetch|intcomma }}</li>        
+                <li>Header bytes {{ report.total_header_bytes|intcomma }}</li>        
+                <li>Body bytes {{ report.total_body_bytes|intcomma }}</li>        
+            </ul>        
+            </blockquote></td>
+        {% endfor %}
+    {% else %}
+        <h2>Stats Error</h2>
+        {{ errors.stats }}
+    {% endif %}
 </tr></table>
 {% endblock %}
