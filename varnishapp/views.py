@@ -16,7 +16,8 @@ def management(request):
         return HttpResponseRedirect(request.path)
     try:
         stats = get_stats()
-    except Exception as e:
+        errors = {}
+    except:
         stats = None
         errors = {"stats":"Impossible to access the stats for server : %s" \
                   %getattr(settings, 'VARNISH_MANAGEMENT_ADDRS', ())}
