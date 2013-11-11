@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from manager import manager
-from django.views.generic.simple import direct_to_template
+from django.shortcuts import render
 from django.conf import settings
 
 def get_stats():
@@ -24,5 +24,4 @@ def management(request):
         
     extra_context = {'stats':stats,
                      'errors':errors}
-    return direct_to_template(request, template='varnish/report.html',
-                              extra_context=extra_context)
+    return render(request, 'varnish/report.html', extra_context)
